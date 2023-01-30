@@ -51,7 +51,7 @@ const Home = () => {
     } else {
       setButon({
         renk: "#5dd5f9",
-        renkBorder: "#ed5252",
+        renkBorder: "#2037b9",
       });
       setDoktor(initial);
     }

@@ -32,7 +32,7 @@ const Home = () => {
   ];
   const [hastalar, setHastalar] = useState(Data);
   const [doktorlar, setDoktor] = useState(initial);
-
+  console.log(initial);
   const [buton, setButon] = useState({
     renk: "#5dd5f9",
     konum: "block",
@@ -48,15 +48,22 @@ const Home = () => {
           resim: doktorlar.filter((i) => i.id === id)[0].resim,
         },
       ]);
-    } else {
-      setButon({
-        renk: "#5dd5f9",
-        renkBorder: "#2037b9",
-      });
-      setDoktor(initial);
     }
+    //  else {
+    //   setButon({
+    //     renk: "#5dd5f9",
+    //     renkBorder: "#2037b9",
+    //   });
+    //   setDoktor(initial);
+    // }
   };
-
+  const anasayfa = () => {
+    setDoktor(initial);
+    setButon({
+      renk: "#5dd5f9",
+      renkBorder: "#2037b9",
+    });
+  };
   return (
     <div style={{ display: buton.konum, gap: "0 3rem" }}>
       <div>
@@ -97,7 +104,12 @@ const Home = () => {
             hastalar={hastalar}
             setHastalar={setHastalar}
             doktorlar={doktorlar}
+            setDoktor={setDoktor}
+            initial
           />
+        )}
+        {buton.renk === "#25ad69" && (
+          <button class="geri" onClick={() => anasayfa()}>geri</button>
         )}
       </div>
 

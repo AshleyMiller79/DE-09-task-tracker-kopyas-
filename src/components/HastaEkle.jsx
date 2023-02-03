@@ -3,9 +3,10 @@
 
 import { useState } from "react";
 
-const GorevEkle = ({ hastalar, setHastalar,doktorlar }) => {
+const GorevEkle = ({ hastalar, setHastalar,doktorlar,setDoktor,initial }) => {
   const [text1, setText] = useState("");
   const [date, setDate] = useState("");
+console.log(initial);
   
 console.log(doktorlar);
   const yapSubmit = (e) => {
@@ -29,10 +30,10 @@ console.log(doktorlar);
   };
 
   return (
-    <div >
+    <div>
       <form onSubmit={yapSubmit}>
         <div className="form-control">
-          <label htmlFor="text">Task</label>
+          <label htmlFor="text">Hasta Bilgileri</label>
 
           <input
             id="text"
@@ -62,10 +63,12 @@ console.log(doktorlar);
 
         <div>
           <button className=" dok btn btn-submit" type="submit">
-            DR <span style={{color:"#6a0707"}}>{doktorlar[0].doktor}</span> İçin Kayıt Oluştur
+            <span style={{ color: "#6a0707" }}>{doktorlar[0].doktor}</span> İçin
+            Kayıt Oluştur
           </button>
         </div>
       </form>
+     
     </div>
   );
 };

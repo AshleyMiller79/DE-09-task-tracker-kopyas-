@@ -32,14 +32,14 @@ const Home = () => {
   ];
   const [hastalar, setHastalar] = useState(Data);
   const [doktorlar, setDoktor] = useState(initial);
-  console.log(initial);
   const [buton, setButon] = useState({
     renk: "#5dd5f9",
     konum: "block",
     renkBorder: "#2037b9",
   });
-  // #25ad69=yeşil #f67373=pembe mercan #ed5252=pembe nin bi ton koyusu
-  const butonClick = (id) => {
+  // #25ad69=yeşil #f67373=pembe mercan #ed5252=pembe nin bi ton koyusu #5dd5f9=açıkmavi
+  //?mavi renkteyken doktora tıklandığında, doktor resimleri ve hasta isimleri yanyana ve renk yeşil olsun, ve tıklanan doktorun resmi ismi görünsün.filter 0 elemanlı bir dizi döndürüyor, o yüzden filterdan sonra [0].doktor yazıyoruz
+  const doktorClick = (id) => {
     if (buton.renk === "#5dd5f9") {
       setButon({ renk: "#25ad69", konum: "flex", renkBorder: "green" });
       setDoktor([
@@ -57,6 +57,7 @@ const Home = () => {
     //   setDoktor(initial);
     // }
   };
+  //? tıklanan doktor ve hastaları ekrandayken Anasayfa butonu tıklanırsa bütün doktorlar tekrar diziye yüklensin,renkleri mavi olsun
   const anasayfa = () => {
     setDoktor(initial);
     setButon({
@@ -66,12 +67,13 @@ const Home = () => {
   };
   return (
     <div style={{ display: buton.konum, gap: "0 3rem" }}>
+      {/* doktorlar ve hastalar yanyanamı alt alta mı olacak display ile belirleniyor, doktora tıklanınca değişecek şekilde */}
       <div>
         <header className="header">
           <h1>HOSPİTAL</h1>
           <div className="dr">
             {doktorlar.map((a, i) => (
-              <div key={a.id}>
+              <div key={i}>
                 <img
                   src={a.resim}
                   alt=""
@@ -81,10 +83,9 @@ const Home = () => {
                   style={{
                     border: `10px groove ${buton.renk}
                 `,
-
                     backgroundColor: "lightgray",
                   }}
-                  onClick={() => butonClick(i)}
+                  onClick={() => doktorClick(i)}
                 />
                 <h4
                   style={{
@@ -98,19 +99,26 @@ const Home = () => {
             ))}
           </div>
         </header>
-
+{/* HastaEkle componenti ve anasayfa butonu doktor yeşilken görünsün */}
         {buton.renk === "#25ad69" && (
-          <HastaEkle
-            hastalar={hastalar}
-            setHastalar={setHastalar}
-            doktorlar={doktorlar}
-            setDoktor={setDoktor}
-            initial
-          />
+          <>
+            <HastaEkle
+              hastalar={hastalar}
+              setHastalar={setHastalar}
+              doktorlar={doktorlar}
+              setDoktor={setDoktor}
+              initial
+            />
+            <button class="geri" onClick={() => anasayfa()}>
+              Anasayfa
+            </button>
+          </>
         )}
-        {buton.renk === "#25ad69" && (
-          <button class="geri" onClick={() => anasayfa()}>geri</button>
-        )}
+        {/* {buton.renk === "#25ad69" && (
+          <button class="geri" onClick={() => anasayfa()}>
+            Anasayfa
+          </button>
+        )} */}
       </div>
 
       <HastaListe

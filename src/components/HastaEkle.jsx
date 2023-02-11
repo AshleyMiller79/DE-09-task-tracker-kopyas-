@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 
-const GorevEkle = ({ hastalar, setHastalar,doktorlar,setDoktor,initial }) => {
+const HastaEkle = ({ hastalar, setHastalar,doktorlar,initial }) => {
   const [text1, setText] = useState("");
   const [date, setDate] = useState("");
 console.log(initial);
@@ -73,4 +73,4 @@ console.log(doktorlar);
   );
 };
 
-export default GorevEkle;
+export default HastaEkle;
